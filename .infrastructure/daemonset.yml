@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata: 
+  name: todoapp-curl
+  namespace: mateapp
+spec:
+  selector:
+    matchLabels:
+      app: todoapp-curl
+  template:
+    metadata:
+      labels: 
+        app: todoapp-curl
+    spec:
+      containers:
+        - name: curl
+          image: busyboxplus:curl
+          command: ["/bin/sh", "-c"]
+          args:
+          - while true; do curl todoapp-service.todoapp.svc.cluster.local; sleep 5; done
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "150m"
+            limits:
+              memory: "256Mi"
+              cpu: "150m"
+
+
+
+
