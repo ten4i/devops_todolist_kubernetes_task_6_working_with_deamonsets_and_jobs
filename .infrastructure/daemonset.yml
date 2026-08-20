@@ -1,3 +1,5 @@
+# Luke AI doble check the namespace's name, it is mateapp already
+
 apiVersion: apps/v1
 kind: DaemonSet
 metadata: 
