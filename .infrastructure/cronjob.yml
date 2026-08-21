@@ -21,7 +21,7 @@ spec:
               image: busyboxplus:curl
               command: ["/bin/sh", "-c"]
               args:
-                - curl todoapp-service.todoapp.svc.cluster.local/api/health
+                - curl --fail --silent --show-error --max-time 10 todoapp-service.mateapp.svc.cluster.local/api/health
               resources:
                 requests:
                   memory: "125Mi"

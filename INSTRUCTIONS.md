@@ -15,8 +15,8 @@ kubectl apply -f .infrastructure/cronjob.yml
 
 ### 4. Verify the todoapp Deployment and Service are up:
 ```
-kubectl get pods -n todoapp -l app=todoapp
-kubectl get svc -n todoapp todoapp-service
+kubectl get pods -n mateapp -l app=todoapp
+kubectl get svc -n mateapp todoapp-service
 ```
 
 ### 5. Verify DaemonSet pods were created: 
@@ -41,5 +41,6 @@ kubectl get jobs -n mateapp
 
 ### 9. Check the logs of the latest CronJob pod to confirm the health check succeeded:
 ```
-kubectl logs -n mateapp -l app=mateapp --tail=20
+LATEST_JOB=$(kubectl get jobs -n mateapp --sort-by=.metadata.creationTimestamp -o jsonpath='{.items[-1].metadata.name}')
+kubectl logs -n mateapp -l job-name=$LATEST_JOB --tail=20
 ```

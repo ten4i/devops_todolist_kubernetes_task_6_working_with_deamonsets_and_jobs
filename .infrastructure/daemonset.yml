@@ -19,7 +19,7 @@ spec:
           image: busyboxplus:curl
           command: ["/bin/sh", "-c"]
           args:
-          - while true; do curl todoapp-service.todoapp.svc.cluster.local; sleep 5; done
+          - while true; do curl --fail --silent --show-error --max-time 10 todoapp-service.mateapp.svc.cluster.local; sleep 5; done
           resources:
             requests:
               memory: "256Mi"
